@@ -6,11 +6,13 @@
 
 SET(MODULE_SRC
 	# Headers
+	collection/stack.h
 	union-find/quickfind.h
 	union-find/quickunionpathcompression.h
 	union-find/weightedquickunion.h
 	
 	# Sources
+	collection/stack.cpp
 	union-find/quickfind.cpp
 	union-find/quickunionpathcompression.cpp
 	union-find/weightedquickunion.cpp
@@ -38,3 +40,4 @@ SET(MODULE_SOURCES ${MODULE_SRC} ${MODULE_PLATFORM_SRC} Sources.cmake)
 # Define source groups.
 #
 SOURCE_GROUP(union-find "union-find/*")
+SOURCE_GROUP(collection "collection/*")

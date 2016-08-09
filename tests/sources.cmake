@@ -7,6 +7,7 @@
 SET(MODULE_SRC
 	main.cpp
 	union-find.cpp
+	collection.cpp
 	)
 
 #
