@@ -5,14 +5,16 @@
 #
 
 SET(MODULE_SRC
-	# Headers
-	collection/stack.h
+	# 
+	collection/fixedarraystack.h
+	collection/linkedliststack.h
 	union-find/quickfind.h
 	union-find/quickunionpathcompression.h
 	union-find/weightedquickunion.h
 	
 	# Sources
-	collection/stack.cpp
+	collection/fixedarraystack.cpp
+	collection/linkedliststack.cpp
 	union-find/quickfind.cpp
 	union-find/quickunionpathcompression.cpp
 	union-find/weightedquickunion.cpp

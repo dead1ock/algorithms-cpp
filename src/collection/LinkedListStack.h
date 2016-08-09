@@ -1,6 +1,9 @@
 
 /*
  * Stack implemented using a Linked List backend.
+ *
+ *
+ * Memory Analysis: 8 + 12N
  */
 template<typename T>
 class LinkedListStack
@@ -16,8 +19,8 @@ public:
 	{ }
 
 	/**
-	 * Algorithmic Complexity: 1
-	 */
+	* Runtime Analysis: O(1)
+	*/
 	void Push(T obj)
 	{
 		Node* lastRoot = mRootNode;
@@ -28,8 +31,8 @@ public:
 	}
 
 	/**
-	 * Algorithmic Complexity: 1
-	 */
+	* Runtime Analysis: O(1)
+	*/
 	T Pop()
 	{
 		Node* lastRoot = mRootNode;
