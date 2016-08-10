@@ -2,6 +2,7 @@
 
 #include <collection/FixedArrayStack.h>
 #include <collection/LinkedListStack.h>
+#include <collection/ResizableStack.h>
 
 TEST(LINKEDLISTSTACK, PushPopCount)
 {
@@ -88,6 +89,54 @@ TEST(FixedArrayStack, Push100000)
 TEST(FixedArrayStack, Push1000000)
 {
 	FixedArrayStack<int> stack(1000000);
+
+	for (int x = 1; x <= 1000; x++)
+		stack.Push(x);
+
+	EXPECT_EQ(1000, stack.Count());
+}
+
+// =====================================================
+//
+// =====================================================
+
+TEST(ResizableStack, PushPopCount)
+{
+	ResizableStack<int> stack;
+
+	stack.Push(100);
+	stack.Push(200);
+	stack.Push(300);
+
+	EXPECT_EQ(3, stack.Count());
+	EXPECT_EQ(300, stack.Pop());
+	EXPECT_EQ(200, stack.Pop());
+	EXPECT_EQ(100, stack.Pop());
+}
+
+TEST(ResizableStack, Push1000)
+{
+	ResizableStack<int> stack;
+
+	for (int x = 1; x <= 1000; x++)
+		stack.Push(x);
+
+	EXPECT_EQ(1000, stack.Count());
+}
+
+TEST(ResizableStack, Push100000)
+{
+	ResizableStack<int> stack;
+
+	for (int x = 1; x <= 1000; x++)
+		stack.Push(x);
+
+	EXPECT_EQ(1000, stack.Count());
+}
+
+TEST(ResizableStack, Push1000000)
+{
+	ResizableStack<int> stack;
 
 	for (int x = 1; x <= 1000; x++)
 		stack.Push(x);

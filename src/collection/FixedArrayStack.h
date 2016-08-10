@@ -1,6 +1,16 @@
 /*
  * Stack implementation using a fixed array backend.
  *
+ * Pros:
+ * Constant time push/pop operations.
+ *
+ * Cons:
+ * Fixed capacity.
+ *
+ *
+ * Notes:
+ * This container is great for instances where you have a known capacity of entries and need
+ * constant time push/pop operations.
  *
  * Memory Analysis: 4 + N
  */

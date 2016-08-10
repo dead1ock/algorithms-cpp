@@ -2,7 +2,16 @@
 /*
  * Stack implemented using a Linked List backend.
  *
+ * Pros:
+ * Constant time push/pop operations.
  *
+ * Cons:
+ * Large extra memory footprint due to Nodes.
+ * Large number of new operations called which will effect performance.
+ *
+ * Notes:
+ * 
+ * 
  * Memory Analysis: 8 + 12N
  */
 template<typename T>

@@ -8,6 +8,7 @@ SET(MODULE_SRC
 	# 
 	collection/fixedarraystack.h
 	collection/linkedliststack.h
+	collection/resizablestack.h
 	union-find/quickfind.h
 	union-find/quickunionpathcompression.h
 	union-find/weightedquickunion.h
@@ -15,6 +16,7 @@ SET(MODULE_SRC
 	# Sources
 	collection/fixedarraystack.cpp
 	collection/linkedliststack.cpp
+	collection/resizablestack.cpp
 	union-find/quickfind.cpp
 	union-find/quickunionpathcompression.cpp
 	union-find/weightedquickunion.cpp
