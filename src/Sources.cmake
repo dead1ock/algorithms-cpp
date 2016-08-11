@@ -7,6 +7,7 @@
 SET(MODULE_SRC
 	# 
 	collection/fixedarraystack.h
+	collection/fixedqueue.h
 	collection/linkedliststack.h
 	collection/resizablestack.h
 	union-find/quickfind.h

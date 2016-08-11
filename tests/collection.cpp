@@ -1,6 +1,7 @@
 #include <gtest/gtest.h>
 
 #include <collection/FixedArrayStack.h>
+#include <collection/FixedQueue.h>
 #include <collection/LinkedListStack.h>
 #include <collection/ResizableStack.h>
 
@@ -142,4 +143,62 @@ TEST(ResizableStack, Push1000000)
 		stack.Push(x);
 
 	EXPECT_EQ(1000, stack.Count());
+}
+
+// =====================================================
+//
+// =====================================================
+
+TEST(FixedQueue, EnqueueDequeueCount)
+{
+	FixedQueue<int> queue(3);
+
+	queue.Enqueue(100);
+	queue.Enqueue(200);
+	queue.Enqueue(300);
+
+	EXPECT_EQ(3, queue.Count());
+	EXPECT_EQ(100, queue.Dequeue());
+	EXPECT_EQ(200, queue.Dequeue());
+	EXPECT_EQ(300, queue.Dequeue());
+}
+
+TEST(FixedQueue, Enqueue1000)
+{
+	FixedQueue<int> queue(1000);
+
+	for (int x = 1; x <= 1000; x++)
+		queue.Enqueue(x);
+
+	EXPECT_EQ(1000, queue.Count());
+}
+
+TEST(FixedQueue, Enqueue100000)
+{
+	FixedQueue<int> queue(100000);
+
+	for (int x = 1; x <= 100000; x++)
+		queue.Enqueue(x);
+
+	EXPECT_EQ(100000, queue.Count());
+}
+
+TEST(FixedQueue, Enqueue1000000)
+{
+	FixedQueue<int> queue(1000000);
+
+	for (int x = 1; x <= 1000000; x++)
+		queue.Enqueue(x);
+
+	EXPECT_EQ(1000000, queue.Count());
+}
+
+TEST(FixedQueue, ProduceEnqueueOverflow)
+{
+	FixedQueue<int> queue(1000000);
+
+	for (int x = 1; x <= 1000001; x++)
+		queue.Enqueue(x);
+
+	EXPECT_EQ(1000000, queue.Count());
 }
