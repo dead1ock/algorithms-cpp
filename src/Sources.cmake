@@ -9,6 +9,7 @@ SET(MODULE_SRC
 	collection/fixedarraystack.h
 	collection/fixedqueue.h
 	collection/linkedliststack.h
+	collection/linkedqueue.h
 	collection/resizablestack.h
 	union-find/quickfind.h
 	union-find/quickunionpathcompression.h

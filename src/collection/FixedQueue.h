@@ -19,11 +19,11 @@ class FixedQueue
 {
 public:
 	FixedQueue(unsigned int capacity)
-	: mCapacity(capacity) {
+	: mCapacity(capacity),
+	mHead(0),
+	mTail(0),
+	mCount(0) {
 		mItems = new T[capacity];
-		mHead = 0;
-		mTail = 0;
-		mCount = 0;
 	}
 
 	~FixedQueue() {
