@@ -5,6 +5,7 @@
 #include <collection/LinkedListStack.h>
 #include <collection/LinkedQueue.h>
 #include <collection/ResizableStack.h>
+#include <collection/ResizableQueue.h>
 
 TEST(LINKEDLISTSTACK, PushPopCount)
 {
@@ -245,6 +246,54 @@ TEST(LinkedQueue, Enqueue100000)
 TEST(LinkedQueue, Enqueue1000000)
 {
 	LinkedQueue<int> queue;
+
+	for (int x = 1; x <= 1000000; x++)
+		queue.Enqueue(x);
+
+	EXPECT_EQ(1000000, queue.Count());
+}
+
+// =====================================================
+//
+// =====================================================
+
+TEST(ResizableQueue, EnqueueDequeueCount)
+{
+	ResizableQueue<int> queue;
+
+	queue.Enqueue(100);
+	queue.Enqueue(200);
+	queue.Enqueue(300);
+
+	EXPECT_EQ(3, queue.Count());
+	EXPECT_EQ(100, queue.Dequeue());
+	EXPECT_EQ(200, queue.Dequeue());
+	EXPECT_EQ(300, queue.Dequeue());
+}
+
+TEST(ResizableQueue, Enqueue1000)
+{
+	ResizableQueue<int> queue;
+
+	for (int x = 1; x <= 1000; x++)
+		queue.Enqueue(x);
+
+	EXPECT_EQ(1000, queue.Count());
+}
+
+TEST(ResizableQueue, Enqueue100000)
+{
+	ResizableQueue<int> queue;
+
+	for (int x = 1; x <= 100000; x++)
+		queue.Enqueue(x);
+
+	EXPECT_EQ(100000, queue.Count());
+}
+
+TEST(ResizableQueue, Enqueue1000000)
+{
+	ResizableQueue<int> queue;
 
 	for (int x = 1; x <= 1000000; x++)
 		queue.Enqueue(x);

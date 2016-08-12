@@ -12,7 +12,7 @@
  * Notes:
  * 
  * 
- * Memory Analysis: 8 + 12N
+ * Memory Analysis: 4 + (8 * sizeof(T) * N)
  */
 template<typename T>
 class LinkedListStack

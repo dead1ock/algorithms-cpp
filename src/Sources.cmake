@@ -11,6 +11,7 @@ SET(MODULE_SRC
 	collection/linkedliststack.h
 	collection/linkedqueue.h
 	collection/resizablestack.h
+	collection/resizablequeue.h
 	union-find/quickfind.h
 	union-find/quickunionpathcompression.h
 	union-find/weightedquickunion.h

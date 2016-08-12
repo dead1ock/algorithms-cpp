@@ -14,7 +14,7 @@
  * This type of container is great for applications where you anticipate a large number of objects but need a resizable capacity. 
  * If you need guarunteed constant time push/pop operations and a flexible capacity, see LinkedListStack.
  *
- * Memory Analysis: 8 + cN
+ * Memory Analysis: 8 + (sizeof(T) * N)
  */
 template<typename T>
 class ResizableStack
@@ -22,8 +22,8 @@ class ResizableStack
 public:
 	ResizableStack()
 	{
-		mObjs = new T[1];
-		mCurrentCapacity = 1;
+		mObjs = new T[2];
+		mCurrentCapacity = 2;
 		mCount = 0;
 	}
 
@@ -70,7 +70,7 @@ private:
 		for (unsigned int x = 0; x < mCount; x++)
 			newObjs[x] = mObjs[x];
 
-		delete mObjs;
+		delete[] mObjs;
 		mCurrentCapacity = capacity;
 		mObjs = newObjs;
 	}
