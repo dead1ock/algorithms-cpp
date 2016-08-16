@@ -57,3 +57,23 @@ void InsertionSort(T* in, unsigned int size) {
 		}
 	}
 }
+
+/*
+* Runtime Analysis: O(N)
+*/
+template<typename T>
+void ShuffleSort(T* in, unsigned int size) {
+	int randNum = 0;
+
+	// For each item in the collection.
+	for (int x = 1; x < size; x++)
+	{
+		// Generate a random number between 0 and x.
+		randNum = rand() % x;
+
+		// Swap current item with selected item.
+		T swap = in[x];
+		in[x] = in[randNum];
+		in[randNum] = swap;
+	}
+}
