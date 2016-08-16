@@ -5,19 +5,25 @@
  */
 template<typename T>
 void SelectionSort(T* in, unsigned int size) {
-	T* smallest;
+	int smallestItemIndex;
 	
+	// For each item in the collection.
 	for (int x = 0; x < size; x++)
 	{
-		smallest = &in[x];
+		smallestItemIndex = x;
+
+		// Look to the right for the smallest item after it.
 		for (int y = x + 1; y < size; y++)
 		{
-			if (in[y] < *smallest)
-				smallest = &in[y];
+			// Set the new smallest pointer.
+			if (in[y] < in[smallestItemIndex])
+				smallestItemIndex = y;
 		}
 
-		in[x] = *smallest;
-		*smallest = in[x];
+		// Swap the smallest found to the right with the current index.
+		T temp = in[x];
+		in[x] = in[smallestItemIndex];
+		in[smallestItemIndex] = temp;
 	}
 }
 
@@ -26,16 +32,26 @@ void SelectionSort(T* in, unsigned int size) {
  */
 template<typename T>
 void InsertionSort(T* in, unsigned int size) {
+	int y = 0;
+	T smaller;
+
+	// For each item in the collection.
 	for (int x = 0; x < size; x++)
 	{
-		for (int y = x; y > 0; y--)
+		y = x;
+
+		// Check every item to the left until we find an item
+		// we are greater than.
+		while (y > 0)
 		{
-			if (in[x] < in[y])
-			{
-				T smaller = in[x];
-				in[y] = in[x];
-				in[x] = smaller;
+			// If we are less than the item to the left, swap.
+			if (in[y] < in[y - 1]) {
+				smaller = in[y];
+				in[y] = in[y-1];
+				in[y-1] = smaller;
+				y--;
 			}
+			// Otherwise continue to the right.
 			else
 				break;
 		}

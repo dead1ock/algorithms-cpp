@@ -6,8 +6,9 @@ TEST(SelectionSort, Sort10)
 {
 	int collection[10];
 	
+	// Insert in reverse total order.
 	for (int x = 9; x >= 0; x--)
-		collection[x] = x;
+		collection[9 - x] = x;
 
 	SelectionSort<int>(collection, 10);
 
@@ -27,8 +28,9 @@ TEST(InsertionSort, Sort10)
 {
 	int collection[10];
 
+	// Insert in reverse total order.
 	for (int x = 9; x >= 0; x--)
-		collection[x] = x;
+		collection[9 - x] = x;
 
 	InsertionSort<int>(collection, 10);
 
