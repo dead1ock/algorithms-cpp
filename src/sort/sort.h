@@ -31,12 +31,12 @@ void SelectionSort(T* in, unsigned int size) {
  * Runtime Analysis: O(N^2)
  */
 template<typename T>
-void InsertionSort(T* in, unsigned int size) {
+void InsertionSort(T* in, unsigned int size, unsigned int h = 1) {
 	int y = 0;
 	T smaller;
 
 	// For each item in the collection.
-	for (int x = 0; x < size; x++)
+	for (int x = 0; x < size; x += h)
 	{
 		y = x;
 
@@ -45,11 +45,11 @@ void InsertionSort(T* in, unsigned int size) {
 		while (y > 0)
 		{
 			// If we are less than the item to the left, swap.
-			if (in[y] < in[y - 1]) {
+			if (in[y] < in[y - h]) {
 				smaller = in[y];
-				in[y] = in[y-1];
-				in[y-1] = smaller;
-				y--;
+				in[y] = in[y - h];
+				in[y - h] = smaller;
+				y -= h;
 			}
 			// Otherwise continue to the right.
 			else
@@ -76,4 +76,30 @@ void ShuffleSort(T* in, unsigned int size) {
 		in[x] = in[randNum];
 		in[randNum] = swap;
 	}
+}
+
+/*
+ * Runtime Complexity: O(N^(3/2) for 3x + 1 increments.
+ */
+template<typename T>
+void ShellSort(T* in, unsigned int size) {
+	int h = 1;
+
+	while (h < (size / 3))
+		h = 3 * h + 1; // 3x + 1 H-Sort increments.
+
+	// H-Sort the array until we reach H=1.
+	while (h >= 1)
+	{
+		InsertionSort(in, size, h);
+		h = (h - 1)/3;
+	}
+}
+
+/*
+ * Runtime Analysis: O(Nlog(N))
+ */
+template<typename T>
+void MergeSort(T* in, unsigned int size) {
+
 }
