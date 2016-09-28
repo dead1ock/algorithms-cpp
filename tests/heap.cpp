@@ -48,3 +48,12 @@ TEST(BuildMaxHeap, BuildComplicated)
 	EXPECT_EQ(11, collection[13]);
 	EXPECT_EQ(3, collection[14]);
 }
+
+TEST(HeapSort, Sort15)
+{
+	int collection[15] = { 10, 84, 9, 84, 77, 42, 3, 9, 18, 101, 44, 33, 22, 11, 15 };
+	HeapSort<int>(collection, 15);
+	for (int x = 0; x < 15; x++)
+		std::cout << collection[x] << " ";
+	std::cout << std::endl;
+}

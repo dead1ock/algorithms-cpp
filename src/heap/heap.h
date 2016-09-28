@@ -49,12 +49,12 @@ void MaxHeapify(T* a, int i, int len) {
 	int r = right(i);
 	int largest = i;
 
-	if ((l <= len) && (a[l] > a[i]))
+	if ((l < len) && (a[l] > a[i]))
 		largest = l;
 	else
 		largest = i;
 
-	if ((r <= len) && (a[r] > a[largest]))
+	if ((r < len) && (a[r] > a[largest]))
 		largest = r;
 
 	if (largest != i) {
@@ -69,6 +69,8 @@ void MaxHeapify(T* a, int i, int len) {
  * Takes an unordered array of T and constructs
  * a MAX-HEAP.
  *
+ * Runtime Analysis: O(log(n))
+ *
  * @param a The array to order MAX-HEAP.
  * @param size The size of the input array.
  */
@@ -76,4 +78,24 @@ template<typename T>
 void BuildMaxHeap(T* a, int size) {
 	for (int i = floor((size - 1) / 2); i >= 0; i--)
 		MaxHeapify(a, i, size);
+}
+
+/**
+ * Sorts an array using the Heap Sort Algorithm.
+ *
+ * Runtime Analysis: O(n log(n))
+ */
+template<typename T>
+void HeapSort(T* a, int size) {
+	BuildMaxHeap(a, size);
+	for (int i = size - 1; i >= 1; i--)
+	{
+		T temp = a[i];
+		a[i] = a[0];
+		a[0] = temp;
+
+		size--;
+
+		MaxHeapify(a, 0, size);
+	}
 }
