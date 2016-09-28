@@ -13,7 +13,7 @@
  * @return Index to the parent node.
  */
 int parent(int index) {
-	return floor(index / 2);
+	return floor((index - 1) / 2);
 }
 
 /**
@@ -140,5 +140,39 @@ T HeapExtractMax(T* a, int& size) {
 
 	MaxHeapify(a, 0, size);
 	return max;
+}
+
+/**
+ * 
+ * Runtime Analysis: O(log n)
+ */
+template<typename T>
+void MaxHeapInsert(T* a, int size, T newKey) {
+
+}
+
+/**
+ * Bubbles up a node in the heap until it hits a parent which is larger
+ * than it.
+ *
+ * @param a The heap.
+ * @param size The size of the heap.
+ * @param index The node we want to "bubble up."
+ * Runtime Analysis: O(log n)
+ */
+template<typename T>
+void HeapIncreaseKey(T* a, int size, int index) {
+	if (0 >= index || index >= size)
+		return;
+
+	while ((parent(index) >= 0) && (a[index] > a[parent(index)]))
+	{
+		// Exchange
+		T temp = a[parent(index)];
+		a[parent(index)] = a[index];
+		a[index] = temp;
+
+		index = parent(index);
+	}
 }
 
