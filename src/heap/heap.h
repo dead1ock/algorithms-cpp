@@ -99,3 +99,46 @@ void HeapSort(T* a, int size) {
 		MaxHeapify(a, 0, size);
 	}
 }
+
+/**
+ * Returns the element in the heap with the largest key.
+ *
+ * Runtime Analysis: O(1)
+ *
+ * @param a The heap to use.
+ * @param size The size of the heap.
+ * @return The element with the largest key in the heap.
+ */
+template<typename T>
+T HeapMaximum(T* a, int size) {
+	if (size > 0)
+		return a[0];
+	else
+		return NULL;
+}
+
+/**
+ * Extracts the maximum element from the top of the heap, then
+ * maintains the heap property by places the bottom most element
+ * on the top of the heap, then invoking Max Heapify.
+ *
+ * Runtime Analysis: O(log n)
+ *
+ * @param a The heap to extract the maximum from.
+ * @param size The size of the heap. This paramater will be decremented to reflect the new
+ * size of the heap.
+ * @return The element with the largest key in the heap.
+ */
+template<typename T>
+T HeapExtractMax(T* a, int& size) {
+	if (size < 1)
+		return NULL;
+
+	T max = a[0];
+	a[0] = a[size - 1];
+	size--;
+
+	MaxHeapify(a, 0, size);
+	return max;
+}
+
