@@ -36,7 +36,7 @@ void InsertionSort(T* in, unsigned int size, unsigned int h = 1) {
 	T smaller;
 
 	// For each item in the collection.
-	for (int x = 0; x < size; x += h)
+	for (int x = 1; x < size; x += h)
 	{
 		y = x;
 
@@ -102,4 +102,87 @@ void ShellSort(T* in, unsigned int size) {
 template<typename T>
 void MergeSort(T* in, unsigned int size) {
 
+}
+
+/**
+ * Partitions the input array into 3 sections. [<= pivot, pivot, > pivot]
+ *
+ * A pivot element is selected at the end of the array. Any element smaller than 
+ * that element will reside on the left of the pivot, followed by the pivot, and then
+ * the elements greater than the pivot.
+ * 
+ * Runtime Analysis: O(n)
+ *
+ * @param in The array to be partitioned.
+ * @param size The length of the array.
+ * @return The index of the pivot element.
+ */
+template<typename T>
+unsigned int Partition(T* in, unsigned int size) {
+	return Partition(in, 0, size - 1);
+}
+
+template<typename T>
+unsigned int Partition(T* in, unsigned int start, unsigned int end) {
+	// Set the pivot to the end of the array.
+	T pivot = in[end];
+	int i = start - 1;
+
+	// From the start of the array, to the pivot.
+	for (int j = start; j <= (end - 1); j++)
+	{
+		// If the element we are looking at is smaller than the pivot.
+		if (in[j] <= pivot)
+		{
+			// Increment the current index.
+			i++;
+
+			// Exchange the pivot with the element we are looking at.
+			T temp = in[i];
+			in[i] = in[j];
+			in[j] = temp;
+		}
+	}
+
+	// Exchange the current index with the pivot.
+	T temp = in[i+1];
+	in[i+1] = in[end];
+	in[end] = temp;
+
+	// Return pivot position.
+	return (i + 1);
+}
+
+
+/**
+ * Sorts an array using the QuickSort algorithm.
+ * 
+ * Partitions the array @see Parition, then recursively sorts the left and right sub-arrays
+ * holding the pivot fixed. Once each left and right sub-array has divided into problem sizes
+ * of 1, all pivots are fixed in their correct positions and the array has been sorted.
+ *
+ * Runtime Analysis: O(n^2)
+ *
+ * @param in The array to be sorted.
+ * @param size The length of the array.
+ */
+template<typename T>
+void QuickSort(T* in, unsigned int size) {
+	QuickSort(in, 0, size - 1);
+}
+
+template<typename T>
+void QuickSort(T* in, unsigned int start, unsigned int end)
+{
+	// If we are not looking at an array of size 1.
+	if (start < end) {
+		// Partition the array.
+		unsigned int pivot = Partition(in, start, end); // This is now in place, break the problem up again.
+
+		// QuickSort elements to the left.
+		QuickSort(in, start, pivot - 1);
+
+		// QuickSort elements to the right.
+		QuickSort(in, pivot + 1, end);
+	}
 }

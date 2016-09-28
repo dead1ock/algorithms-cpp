@@ -88,3 +88,27 @@ TEST(ShellSort, Sort10)
 	EXPECT_EQ(8, collection[8]);
 	EXPECT_EQ(9, collection[9]);
 }
+
+TEST(Partition, Partition6)
+{
+	int collection[10] = { 8, 4, 6, 7, 10, 5 };
+	EXPECT_EQ(1, Partition<int>(collection, 6));
+	EXPECT_EQ(4, collection[0]);
+	EXPECT_EQ(5, collection[1]);
+	EXPECT_EQ(6, collection[2]);
+	EXPECT_EQ(7, collection[3]);
+	EXPECT_EQ(10, collection[4]);
+	EXPECT_EQ(8, collection[5]);
+}
+
+TEST(QuickSort, Sort6)
+{
+	int collection[10] = { 8, 4, 6, 7, 10, 5 };
+	QuickSort<int>(collection, 6);
+	EXPECT_EQ(4, collection[0]);
+	EXPECT_EQ(5, collection[1]);
+	EXPECT_EQ(6, collection[2]);
+	EXPECT_EQ(7, collection[3]);
+	EXPECT_EQ(8, collection[4]);
+	EXPECT_EQ(10, collection[5]);
+}
