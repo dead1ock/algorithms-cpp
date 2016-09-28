@@ -112,3 +112,28 @@ TEST(QuickSort, Sort6)
 	EXPECT_EQ(8, collection[4]);
 	EXPECT_EQ(10, collection[5]);
 }
+
+TEST(Merge, Merge6)
+{
+	int collection[6] = { 5, 7, 10, // First array
+		1, 4, 6 }; // Second array
+	Merge<int>(collection, 0, 2, 5);
+	EXPECT_EQ(1, collection[0]);
+	EXPECT_EQ(4, collection[1]);
+	EXPECT_EQ(5, collection[2]);
+	EXPECT_EQ(6, collection[3]);
+	EXPECT_EQ(7, collection[4]);
+	EXPECT_EQ(10, collection[5]);
+}
+
+TEST(MergeSort, Sort6)
+{
+	int collection[6] = { 7, 5, 10, 4, 1, 6 };
+	MergeSort<int>(collection, 6);
+	EXPECT_EQ(1, collection[0]);
+	EXPECT_EQ(4, collection[1]);
+	EXPECT_EQ(5, collection[2]);
+	EXPECT_EQ(6, collection[3]);
+	EXPECT_EQ(7, collection[4]);
+	EXPECT_EQ(10, collection[5]);
+}

@@ -96,14 +96,6 @@ void ShellSort(T* in, unsigned int size) {
 	}
 }
 
-/*
- * Runtime Analysis: O(Nlog(N))
- */
-template<typename T>
-void MergeSort(T* in, unsigned int size) {
-
-}
-
 /**
  * Partitions the input array into 3 sections. [<= pivot, pivot, > pivot]
  *
@@ -185,4 +177,84 @@ void QuickSort(T* in, unsigned int start, unsigned int end)
 		// QuickSort elements to the right.
 		QuickSort(in, pivot + 1, end);
 	}
+}
+
+/**
+ * Takes an array and splits it into 2 sub-arrays (based on pivot position), then merges the contents
+ * back together in ascending order.
+ *
+ * @param in The array to "merge"
+ * @param start Where to start the merge operation on this array.
+ * @param pivot The pivot where the array will be split into 2 sub-arrays. (Usually center is chosen).
+ * @param end Where to end the merge operation on this array.
+ */
+template<typename T>
+void Merge(T* in, unsigned int start, unsigned int pivot, unsigned int end)
+{
+	unsigned int size = (end + 1) - start;
+	unsigned int i = start;
+	unsigned int j = pivot + 1;
+	unsigned int writeIndex = start;
+
+	// Copy temporary array which will be used to compare
+	// values for swapping.
+	T* readArray = new T[size];
+	memcpy(readArray, in, (start + size) * sizeof(T));
+
+	while ((i <= pivot) && (j <= end))
+	{
+		if (readArray[i] <= readArray[j]) {
+			in[writeIndex++] = readArray[i++];
+		}
+		else {
+			in[writeIndex++] = readArray[j++];
+		}
+	}
+
+	if (i > pivot)
+	{
+		// copy rest of second array
+		memcpy(in + writeIndex, readArray + j, ((end + 1) - j) * sizeof(T));
+	}
+	else if (j > end)
+	{
+		// copy rest of first array
+		memcpy(in + writeIndex, readArray + i, ((pivot + 1) - i) * sizeof(T));
+	}
+
+	//delete[] readArray; Causes exception?
+}
+
+/**
+ * Sorts an array using the Merge Sort algorithm.
+ *
+ * DIVIDE: Divides the input sub-array recursively by n/2 until the size of
+ * sub-array is equal to 1 (sorted).
+ *
+ * CONQUER: Invokes Merge() on each sorted sub-array while unwinding the stack,
+ * merging the contents of each sorted sub-array back into the original array.
+ *
+ * COMBINE: The result is a sorted array.
+ *
+ * This is not an in-place sort and requires 2N memory!
+ *
+ * Runtime Analysis: O(n log(n))
+ * Memory Consumption: O(2n)
+ */
+template<typename T>
+void MergeSort(T* in, unsigned int start, unsigned int end)
+{
+	if (start < end)
+	{
+		int center = floor((start + end) / 2);
+		MergeSort(in, start, center);
+		MergeSort(in, center+1, end);
+		Merge(in, start, center, end);
+	}
+}
+
+template<typename T>
+void MergeSort(T* in, unsigned int size)
+{
+	MergeSort(in, 0, size - 1);
 }
