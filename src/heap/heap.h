@@ -144,16 +144,8 @@ T HeapExtractMax(T* a, int& size) {
 
 /**
  * 
+ *
  * Runtime Analysis: O(log n)
- */
-template<typename T>
-void MaxHeapInsert(T* a, int size, T newKey) {
-
-}
-
-/**
- * Bubbles up a node in the heap until it hits a parent which is larger
- * than it.
  *
  * @param a The heap.
  * @param size The size of the heap.
@@ -161,9 +153,11 @@ void MaxHeapInsert(T* a, int size, T newKey) {
  * Runtime Analysis: O(log n)
  */
 template<typename T>
-void HeapIncreaseKey(T* a, int size, int index) {
-	if (0 >= index || index >= size)
+void HeapIncreaseKey(T* a, int size, int index, T key) {
+	if (0 >= index || index >= size || a[index] > key)
 		return;
+
+	a[index] = key;
 
 	while ((parent(index) >= 0) && (a[index] > a[parent(index)]))
 	{
@@ -174,5 +168,32 @@ void HeapIncreaseKey(T* a, int size, int index) {
 
 		index = parent(index);
 	}
+}
+
+/**
+* Increases the heap size by 1, then inserts
+* the new key on the bottom of the heap and bubbles up the
+* node (using HeapIncreaseKey).
+*
+* Runtime Analysis: O(log n)
+*
+* @param a The heap.
+* @param size The size of the heap. This will be incremented by 1.
+* @param newKey The new key inserted into the heap.
+* @return A pointer to the new heap memory block.
+*/
+template<typename T>
+T* MaxHeapInsert(T* a, int& size, T newKey) {
+	// Expand input array.
+	T* newMemory = new T[++size];
+	memcpy(newMemory, a, size * sizeof(T));
+	a = newMemory;
+
+	// Preserve heap property.
+	a[size - 1] = -INFINITY;
+
+	// Insert new key and bubble up.
+	HeapIncreaseKey(a, size, size - 1, newKey);
+	return a;
 }
 
