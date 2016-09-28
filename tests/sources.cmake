@@ -5,6 +5,7 @@
 #
 
 SET(MODULE_SRC
+	heap.cpp
 	main.cpp
 	union-find.cpp
 	collection.cpp
